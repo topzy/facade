@@ -9,3 +9,4 @@ eureka:
       default-zone: http://localhost:${server.port}/eureka/
     register-with-eureka: false
     fetch-registry: false
+testName: testName
