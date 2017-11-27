@@ -1,0 +1,15 @@
+server:
+  port: 9411
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://114.215.80.37:8761/eureka/
+
+  instance:
+    lease-renewal-interval-in-seconds: 5      # \u5FC3\u8DF3\u65F6\u95F4\uFF0C\u5373\u670D\u52A1\u7EED\u7EA6\u95F4\u9694\u65F6\u95F4\uFF08\u7F3A\u7701\u4E3A30s\uFF09
+    lease-expiration-duration-in-seconds: 10  # \u53D1\u5446\u65F6\u95F4\uFF0C\u5373\u670D\u52A1\u7EED\u7EA6\u5230\u671F\u65F6\u95F4\uFF08\u7F3A\u7701\u4E3A90s\uFF09
+
+spring:
+  application:
+    name: zipkin-service
