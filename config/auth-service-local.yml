@@ -1,0 +1,44 @@
+server:
+  port: 8200
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 10  # 发呆时间，即服务续约到期时间（缺省为90s）
+
+spring:
+  application:
+    name: auth-service
+  zipkin:
+    base-url: http://localhost:9411
+  datasource:
+    url: jdbc:mysql://192.168.80.109:3306/oauth?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 192.168.90.128
+      # Redis服务器连接密码（默认为空）
+    password: 123456
+    port: 6379
+jwt:
+  header: Authorization
+  secret: mySecret
+  access_token:
+    expiration: 604800
+  refresh_token:
+    expiration: 604800
+  tokenHead: "Bearer "
+
+logging.level.org.springframework.security: DEBUG
+logging.leve.org.springframework: DEBUG
+
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
