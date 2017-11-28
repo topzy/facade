@@ -9,3 +9,5 @@ eureka:
       default-zone: http://114.215.80.37:${server.port}/eureka/
     register-with-eureka: false
     fetch-registry: false
+  instance:
+    prefer-ip-address: true
