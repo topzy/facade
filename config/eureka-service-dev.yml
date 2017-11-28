@@ -11,3 +11,4 @@ eureka:
     fetch-registry: false
   instance:
     prefer-ip-address: true
+testName: a
