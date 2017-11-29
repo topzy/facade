@@ -9,3 +9,6 @@ eureka:
       default-zone: http://localhost:${server.port}/eureka/
     register-with-eureka: false
     fetch-registry: false
+  instance:
+    prefer-ip-address: true                   #服务注册方式  IP地址
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}  # IP地址
