@@ -11,4 +11,4 @@ eureka:
     fetch-registry: false
   instance:
     prefer-ip-address: true                   #服务注册方式  IP地址
-    instance-id: ${spring.cloud.client.ipAddress}:${random.int}  # 服务的id
+    
