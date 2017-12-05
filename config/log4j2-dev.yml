@@ -7,13 +7,13 @@ Configuration:
        value: 114.215.80.37:9092
 
   Appenders:
-    Console:  #输出到控制台
+    Console:
       name: CONSOLE
       target: SYSTEM_OUT
       PatternLayout:
         pattern: ${logFormat}
 
-    Kafka: #输出到Kafka
+    Kafka: 
       name: basicLog
       topic:  test
       PatternLayout:
