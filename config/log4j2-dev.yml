@@ -2,7 +2,7 @@ Configuration:
   Properties:
     Property:
       - name: logFormat
-        value: "%d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n"
+        value: %d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n
       - name: kafkaBootstrapServers
         value: 114.215.80.37:9092
 
@@ -24,13 +24,13 @@ Configuration:
 
     RollingFile:
        name: RollingFile
-       fileName: "E:/logs/vehicle-server.log"
-       filePattern: "logs/vehicle-server.%d{yyyy-MM-dd}.log"
+       fileName: E:/logs/vehicle-server.log
+       filePattern: logs/vehicle-server.%d{yyyy-MM-dd}.log
        PatternLayout:
          Pattern: ${logFormat}
        Policies:
          SizeBasedTriggeringPolicy:
-           size: "128 MB"
+           size: 128 MB
 
     - Async:
         AppenderRef:
