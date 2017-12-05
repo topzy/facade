@@ -1,10 +1,10 @@
 Configuration:
   Properties:
     Property:
-     - name: logFormat
-       value: "%d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n"
-     - name: kafkaBootstrapServers
-       value: 114.215.80.37:9092
+      - name: logFormat
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n"
+      - name: kafkaBootstrapServers
+        value: 114.215.80.37:9092
 
   Appenders:
     Console:
@@ -13,7 +13,7 @@ Configuration:
       PatternLayout:
         pattern: ${logFormat}
 
-    Kafka: 
+    Kafka:
       name: basicLog
       topic:  test
       PatternLayout:
@@ -27,10 +27,10 @@ Configuration:
        fileName: "E:/logs/vehicle-server.log"
        filePattern: "logs/vehicle-server.%d{yyyy-MM-dd}.log"
        PatternLayout:
-        Pattern: ${logFormat}
+         Pattern: ${logFormat}
        Policies:
-        SizeBasedTriggeringPolicy:
-          size: "128 MB"
+         SizeBasedTriggeringPolicy:
+           size: "128 MB"
 
     - Async:
         AppenderRef:
@@ -38,8 +38,8 @@ Configuration:
           ref: RollingFile
     - Async:
         AppenderRef:
-         name: basicLogAsync
-         ref: basicLog
+          name: basicLogAsync
+          ref: basicLog
 
   Loggers:
     Logger:
@@ -47,7 +47,7 @@ Configuration:
       level: info
     Root:
      AppenderRef:
-      - ref: STDOUT
-      - ref: FileAsync
-      - ref: basicLogAsync
+       - ref: STDOUT
+       - ref: FileAsync
+       - ref: basicLogAsync
      level: info
