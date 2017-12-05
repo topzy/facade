@@ -1,0 +1,50 @@
+Configuration: 
+ Properties: 
+  Property: 
+   - name: logFormat
+    value: "%d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n"
+   - name: kafkaBootstrapServers
+    value: 114.215.80.37:9092
+ Appenders: 
+  Console: 
+    name: STDOUT
+    target: SYSTEM_OUT
+    PatternLayout: 
+        pattern: ${logFormat}
+   
+  RollingFile: 
+   name: RollingFile
+   fileName: "E:/logs/vehicle-server.log"
+   filePattern: "logs/vehicle-server.%d{yyyy-MM-dd}.log"
+   PatternLayout: 
+    Pattern: ${logFormat}
+   Policies: 
+    TimeBasedTriggeringPolicy: 
+  Kafka: 
+   name: basicLog
+   topic: test
+   PatternLayout: 
+    Pattern: ${logFormat}
+   Property: 
+    name: "bootstrap.servers"
+    value: "${kafkaBootstrapServers}"
+
+    
+  Async: 
+   AppenderRef: 
+     ref: RollingFile
+     name: FileAsync
+   AppenderRef: 
+     ref: basicLog
+     name: basicLogAsync
+
+ Loggers: 
+  Logger: 
+    name: "org.apache.kafka"
+    level: info
+  Root: 
+   AppenderRef: 
+    - ref: STDOUT
+    - ref: FileAsync
+    - ref: basicLogAsync
+   level: info
