@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="logFormat">
+            %d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n
+        </Property>
+        <Property name="kafkaBootstrapServers">
+            114.215.80.37:9092
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${logFormat}"/>
+        </Console>
+
+        <RollingFile name="RollingFile" fileName="E:/logs/vehicle-server.log"
+                     filePattern="logs/vehicle-server.%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <Pattern>
+                    ${logFormat}
+                </Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+        <Kafka name="basicLog" topic="test">
+            <PatternLayout>
+                <Pattern>
+                    ${logFormat}
+                </Pattern>
+            </PatternLayout>
+            <Property name="bootstrap.servers">${kafkaBootstrapServers}</Property>
+        </Kafka>
+
+        <Async name="FileAsync">
+            <AppenderRef ref="RollingFile"/>
+        </Async>
+
+        <Async name="basicLogAsync">
+            <AppenderRef ref="basicLog"/>
+        </Async>
+
+    </Appenders>
+    <Loggers>
+        <Logger name="org.apache.kafka" level="info"/>
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="FileAsync"/>
+            <AppenderRef ref="basicLogAsync"/>
+        </Root>
+    </Loggers>
+</Configuration>
