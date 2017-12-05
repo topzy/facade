@@ -1,50 +1,53 @@
-Configuration: 
- Properties: 
-  Property: 
-   - name: logFormat
-    value: "%d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n"
-   - name: kafkaBootstrapServers
-    value: 114.215.80.37:9092
- Appenders: 
-  Console: 
-    name: STDOUT
-    target: SYSTEM_OUT
-    PatternLayout: 
+Configuration:
+  Properties:
+    Property:
+     - name: logFormat
+       value: "%d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n"
+     - name: kafkaBootstrapServers
+       value: 114.215.80.37:9092
+
+  Appenders:
+    Console:  #输出到控制台
+      name: CONSOLE
+      target: SYSTEM_OUT
+      PatternLayout:
         pattern: ${logFormat}
-   
-  RollingFile: 
-   name: RollingFile
-   fileName: "E:/logs/vehicle-server.log"
-   filePattern: "logs/vehicle-server.%d{yyyy-MM-dd}.log"
-   PatternLayout: 
-    Pattern: ${logFormat}
-   Policies: 
-    TimeBasedTriggeringPolicy: 
-  Kafka: 
-   name: basicLog
-   topic: test
-   PatternLayout: 
-    Pattern: ${logFormat}
-   Property: 
-    name: "bootstrap.servers"
-    value: "${kafkaBootstrapServers}"
 
-    
-  Async: 
-   AppenderRef: 
-     ref: RollingFile
-     name: FileAsync
-   AppenderRef: 
-     ref: basicLog
-     name: basicLogAsync
+    Kafka: #输出到Kafka
+      name: basicLog
+      topic:  test
+      PatternLayout:
+        pattern: ${logFormat}
+      Property:
+        - name: bootstrap.servers
+          value: 114.215.80.37:9092
 
- Loggers: 
-  Logger: 
-    name: "org.apache.kafka"
-    level: info
-  Root: 
-   AppenderRef: 
-    - ref: STDOUT
-    - ref: FileAsync
-    - ref: basicLogAsync
-   level: info
+    RollingFile:
+       name: RollingFile
+       fileName: "E:/logs/vehicle-server.log"
+       filePattern: "logs/vehicle-server.%d{yyyy-MM-dd}.log"
+       PatternLayout:
+        Pattern: ${logFormat}
+       Policies:
+        SizeBasedTriggeringPolicy:
+          size: "128 MB"
+
+    - Async:
+        AppenderRef:
+          name: FileAsync
+          ref: RollingFile
+    - Async:
+        AppenderRef:
+         name: basicLogAsync
+         ref: basicLog
+
+  Loggers:
+    Logger:
+      name: org.apache.kafka
+      level: info
+    Root:
+     AppenderRef:
+      - ref: STDOUT
+      - ref: FileAsync
+      - ref: basicLogAsync
+     level: info
