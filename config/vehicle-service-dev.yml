@@ -56,6 +56,7 @@ logging:
     org.springframework.security: info
     org.springframework: info
     com.jy.mapper: debug
+  config: classpath:log4j2-dev.yml
 jwt:
   header: Authorization
   secret: mySecret
@@ -64,5 +65,3 @@ jwt:
   refresh_token:
     expiration: 604800
   tokenHead: "Bearer "
-kafka:
-  url: 114.215.80.37:9092
