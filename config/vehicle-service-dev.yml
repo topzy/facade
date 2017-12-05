@@ -65,3 +65,5 @@ jwt:
   refresh_token:
     expiration: 604800
   tokenHead: "Bearer "
+
+kafka.bootstrap.servers: 114.215.80.37:9092
