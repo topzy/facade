@@ -1,26 +1,36 @@
 Configuration:
+  status: info
+
   Properties:
     Property:
-      - name: logFormat
-        value: '%d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n'
-      - name: kafkaBootstrapServers
-        value: 114.215.80.37:9092
+      -  name: logFormat
+         value: '%d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [vehicle-server] [%thread] %-5level %logger{35} - %msg %n'
+      -  name: kafkaBootstrapServers
+         value: 114.215.80.37:9092
 
   Appenders:
-    Console:
-      name: CONSOLE
+    Console:  #输出到控制台
+      name: Console
       target: SYSTEM_OUT
+      ThresholdFilter:
+        level: trace
+        onMatch: ACCEPT
+        onMismatch: DENY
       PatternLayout:
         pattern: ${logFormat}
 
-    Kafka:
-      name: basicLog
+    Kafka: #输出到Kafka
+      name: Kafka
       topic:  test
+      ThresholdFilter:
+        level: info
+        onMatch: ACCEPT
+        onMismatch: DENY
       PatternLayout:
         pattern: ${logFormat}
       Property:
         - name: bootstrap.servers
-          value: 114.215.80.37:9092
+          value: ${kafkaBootstrapServers}
 
     RollingFile:
        name: RollingFile
@@ -31,23 +41,22 @@ Configuration:
        Policies:
          SizeBasedTriggeringPolicy:
            size: 128 MB
-
-    - Async:
+    Async:
+      - name: AsyncRollingFile
         AppenderRef:
-          name: FileAsync
           ref: RollingFile
-    - Async:
+      - name: AsyncKafka
         AppenderRef:
-          name: basicLogAsync
-          ref: basicLog
+          ref: Kafka
 
   Loggers:
-    Logger:
-      name: org.apache.kafka
-      level: info
-    Root:
-     AppenderRef:
-       - ref: STDOUT
-       - ref: FileAsync
-       - ref: basicLogAsync
-     level: info
+      Logger:
+        name: org.apache.kafka
+        level: info
+      Root:
+       AppenderRef:
+         -  ref: Console
+         -  ref: Kafka
+         -  ref: AsyncRollingFile
+       level: info
+
