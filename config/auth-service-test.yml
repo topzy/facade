@@ -21,7 +21,7 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   redis:
-    host: 192.168.80.208
+    host: 192.168.90.188
     port: 6379
     pool:
       max-idle: 20
