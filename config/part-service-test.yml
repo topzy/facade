@@ -21,8 +21,8 @@ spring:
     #抓取SQL运行时的参数值
     # url: jdbc:log4jdbc:mysql://192.168.80.109:3306/vehicle?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&failOverReadOnly=false
     url: jdbc:mysql://192.168.90.188:3306/part?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&failOverReadOnly=false
-    username: root
-    password: 123456
+    username: jy
+    password: 123
     #抓取SQL运行时的参数值
     #driver-class-name: net.sf.log4jdbc.DriverSpy
     driver-class-name: com.mysql.jdbc.Driver
