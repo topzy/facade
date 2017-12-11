@@ -4,20 +4,19 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://114.215.80.37:8761/eureka/
+      defaultZone: http://192.168.90.186:8761/eureka/
 
   instance:
     lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
     lease-expiration-duration-in-seconds: 15  # 发呆时间，即服务续约到期时间（缺省为90s）
-    prefer-ip-address: true                   #服务注册方式  IP地址
-    
+    prefer-ip-address: true 
 spring:
   application:
     name: auth-service
   zipkin:
-    base-url: http://114.215.80.37:9411
+    base-url: http://192.168.90.186:9411
   datasource:
-    url: jdbc:mysql://114.215.80.37:3306/oauth?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://192.168.90.188:3306/oauth?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&failOverReadOnly=false
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver

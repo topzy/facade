@@ -6,9 +6,8 @@ eureka:
     eviction-interval-timer-in-ms: 5000       # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
   client:
     service-url:
-      default-zone: http://114.215.80.37:${server.port}/eureka/
+      default-zone: http://192.168.90.186:${server.port}/eureka/
     register-with-eureka: false
     fetch-registry: false
   instance:
-    prefer-ip-address: true                   #服务注册方式  IP地址
-    
+    prefer-ip-address: true
