@@ -21,10 +21,16 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   redis:
-    host: 114.215.80.37
-      # Redis服务器连接密码（默认为空）
-    password: 123456
+    host: 192.168.80.208
     port: 6379
+    pool:
+      max-idle: 20
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+    database: 0 #默认是索引为的0的数据库
+    # Redis服务器连接密码（默认为空）
+    password: 123456
 
 jwt:
   header: Authorization
