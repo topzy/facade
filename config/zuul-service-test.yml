@@ -36,7 +36,7 @@ zuul:
       path: /hours/**
       service-id: hour-service
     vehicle-service:
-      path: /groups/**
+      path: /vehicles/**
       service-id: vehicle-service
   host:
     connect-timeout-millis: 10000
