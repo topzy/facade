@@ -17,7 +17,7 @@ spring:
     base-url: http://192.168.90.186:9411
 
 auth:
-  service-host: http://${auth.host:localhost}:${server.port}
+  service-host: http://${auth.host:192.168.90.186}:${server.port}
   service-path: /auth-service
   jwt-token-path: /oauth/jwtToken
 
