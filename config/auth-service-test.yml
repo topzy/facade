@@ -23,13 +23,6 @@ spring:
   redis:
     host: 192.168.90.188
     port: 6379
-    pool:
-      max-idle: 20
-      min-idle: 1
-      max-active: 20
-      max-wait: 60000
-    database: 0 #默认是索引为的0的数据库
-    # Redis服务器连接密码（默认为空）
     password: 123456
 
 jwt:
