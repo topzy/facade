@@ -28,9 +28,9 @@ zuul:
     auth-service:
       path: /auths/**
       service-id: auth-service
-    part-service:
-      path: /parts/**
-      service-id: part-service
+#    part-service:
+#      path: /parts/**
+#      service-id: part-service
     hour-service:
       path: /hours/**
       service-id: hour-service
@@ -42,6 +42,9 @@ zuul:
     vehicle-service:
       url:  http://localhost:8201
       path: /vehicle-service/**
+    part-service:
+      url:  http://localhost:8202
+      path: /part-service/**
   host:
     connect-timeout-millis: 10000
     socket-timeout-millis: 60000
