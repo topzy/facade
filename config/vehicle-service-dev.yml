@@ -29,7 +29,7 @@ spring:
   datasource:
     #抓取SQL运行时的参数值
     # url: jdbc:log4jdbc:mysql://192.168.80.109:3306/vehicle?udockseUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&failOverReadOnly=false
-    url: jdbc:mysql://192.168.80.188:3306/vehicle_prod?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://192.168.90.188:3306/vehicle_prod?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&failOverReadOnly=false
     username: jy
     password: 123
     #抓取SQL运行时的参数值
