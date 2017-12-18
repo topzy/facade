@@ -4,7 +4,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://192.168.90.186:8761/eureka/
 
   instance:
     lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
@@ -14,7 +14,7 @@ spring:
   application:
     name: zuul-service
   zipkin:
-    base-url: http://localhost:8761:9411
+    base-url: http://192.168.90.186:9411
 
 auth:
   service-host: http://${auth.host:localhost}:${server.port}
@@ -35,13 +35,14 @@ zuul:
       path: /hours/**
       service-id: hour-service
 #   动态路由，依赖服务发现
-    vehicle-service:
-      path: /vehicles/**
-      service-id: vehicle-service
-#   静态路由
 #    vehicle-service:
-#      url:  http://localhost:8201
-#      path: /vehicle-service/**
+#      path: /vehicles/**
+#      service-id: vehicle-service
+#   静态路由
+#
+    vehicle-service:
+      url:  http://localhost:8201
+      path: /vehicle-service/**
   host:
     connect-timeout-millis: 10000
     socket-timeout-millis: 60000
